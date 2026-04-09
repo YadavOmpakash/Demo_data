@@ -1,29 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>WhatsApp UI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om Professional Website</title>
+
+  <!-- CSS LINK -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="app">
+<header>
+  <h1>💸 Om Professional Website</h1>
+</header>
 
-  <div class="header">
-    <h2>WhatsApp</h2>
-  </div>
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Form</a>
+  <a href="#">Table</a>
+  <a href="#">Media</a>
+  <button onclick="toggleDark()">🌙</button>
+</nav>
 
-  <div class="chat-list">
-    <div class="chat">Rahul: Hello</div>
-    <div class="chat">Aman: Hi bro</div>
-    <div class="chat">Neha: Good morning</div>
-  </div>
+<main>
 
-  <div class="footer">
-    <input type="text" placeholder="Type a message">
-    <button>Send</button>
-  </div>
+<section>
+  <h2>📋 Registration Form</h2>
+  <form id="myForm">
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <input type="date">
+    <input type="file">
+    <textarea placeholder="Message"></textarea>
+    <select>
+      <option>Select Course</option>
+      <option>HTML</option>
+      <option>CSS</option>
+      <option>JavaScript</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+</section>
 
-</div>
+<section>
+  <h2>📊 Table</h2>
+  <table>
+    <tr><th>Name</th><th>Skill</th></tr>
+    <tr><td>Om</td><td>HTML</td></tr>
+    <tr><td>Rahul</td><td>CSS</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>📌 Lists</h2>
+  <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+  <ol><li>Learn</li><li>Practice</li></ol>
+</section>
+
+<section>
+  <h2>🎥 Media</h2>
+  <video controls>
+    <source src="">
+  </video>
+  <audio controls>
+    <source src="">
+  </audio>
+</section>
+
+<section>
+  <h2>🌐 Iframe</h2>
+  <iframe src="https://example.com"></iframe>
+</section>
+
+<article>
+  <h2>📘 Article</h2>
+  <p>Website content section</p>
+</article>
+
+<aside>
+  <h3>🔥 Sidebar</h3>
+  <p>Quick links</p>
+</aside>
+
+<details>
+  <summary>More Info</summary>
+  <p>Hidden content</p>
+</details>
+
+</main>
+
+<footer>
+  <p>© 2026 Om Website</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// DARK MODE
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
+// FORM SUBMIT
+document.getElementById("myForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Form Submitted 🚀");
+});
+
+</script>
 
 </body>
 </html>
