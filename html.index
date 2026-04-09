@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om’s All-in-One Web</title>
+  <style>
+    :root {
+      --primary-color: #4cafef;
+      --secondary-color: #f1f1f1;
+      --text-color: #333;
+      --bg-color: #ffffff;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.8em;
+      border-radius: 0 0 20px 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background: #333;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .box {
+      background: var(--secondary-color);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #3a8edb;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    .color-change {
+      margin: 20px;
+      text-align: center;
+    }
+    .share {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .share button {
+      background: #25D366; /* WhatsApp green */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Om’s Modern Web Portal
+  </header>
+  <nav>
+    <a href="#payment">Payments</a>
+    <a href="#learning">Learning</a>
+    <a href="#news">News</a>
+    <a href="#upload">Upload</a>
+    <a href="#other">Other</a>
+  </nav>
+
+  <div class="container">
+    <div class="box" id="payment">
+      <h2>Free Payment Links</h2>
+      <a href="https://paytm.com" target="_blank"><button>Paytm</button></a>
+      <a href="https://phonepe.com" target="_blank"><button>PhonePe</button></a>
+      <a href="https://gpay.com" target="_blank"><button>Google Pay</button></a>
+      <a href="https://paypal.com" target="_blank"><button>PayPal</button></a>
+      <a href="https://www.bhimupi.org.in/" target="_blank"><button>BHIM UPI</button></a>
+    </div>
+
+    <div class="box" id="learning">
+      <h2>Free Learning Websites</h2>
+      <a href="https://duolingo.com" target="_blank"><button>Duolingo (Speaking)</button></a>
+      <a href="https://coursera.org" target="_blank"><button>Coursera</button></a>
+      <a href="https://khanacademy.org" target="_blank"><button>Khan Academy</button></a>
+      <a href="https://udemy.com" target="_blank"><button>Udemy</button></a>
+    </div>
+
+    <div class="box" id="news">
+      <h2>News & Current Affairs</h2>
+      <a href="https://ndtv.com" target="_blank"><button>NDTV</button></a>
+      <a href="https://indiatoday.in" target="_blank"><button>India Today</button></a>
+      <a href="https://thehindu.com" target="_blank"><button>The Hindu (Current Affairs)</button></a>
+    </div>
+
+    <div class="box" id="upload">
+      <h2>Upload Domain Pic</h2>
+      <input type="file" accept="image/*" onchange="previewImage(event)">
+      <div id="imagePreview"></div>
+    </div>
+
+    <div class="box" id="other">
+      <h2>Add Your Own Link</h2>
+      <input type="text" id="userLink" placeholder="Enter URL">
+      <button onclick="addLink()">Add Link</button>
+      <div id="linkList"></div>
+    </div>
+  </div>
+
+  <div class="color-change">
+    <button onclick="toggleTheme()">Change Page Color</button>
+  </div>
+
+  <div class="share">
+    <button onclick="shareWebsite()">Share This Website</button>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const preview = document.getElementById('imagePreview');
+      preview.innerHTML = '';
+      const file = event.target.files[0];
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.style.width = '100%';
+      img.style.borderRadius = '15px';
+      preview.appendChild(img);
+    }
+
+    function addLink() {
+      const userLink = document.getElementById('userLink').value;
+      const linkList = document.getElementById('linkList');
+      if(userLink) {
+        const link = document.createElement('a');
+        link.href = userLink;
+        link.target = '_blank';
+        link.innerHTML = `<button>${userLink}</button>`;
+        linkList.appendChild(link);
+      }
+    }
+
+    function toggleTheme() {
+      document.body.style.setProperty('--bg-color', document.body.style.getPropertyValue('--bg-color') === '#ffffff' ? '#333' : '#ffffff');
+      document.body.style.setProperty('--text-color', document.body.style.getPropertyValue('--text-color') === '#333' ? '#fff' : '#333');
+    }
+
+    function shareWebsite() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Om’s Modern Web Portal',
+          text: 'Check out this awesome website!',
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        alert('Share not supported in this browser.');
+      }
+    }
+  </script>
+</body>
+</html>
+
