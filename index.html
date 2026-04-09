@@ -1,115 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Om Professional Website</title>
-
-  <!-- CSS LINK -->
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Om Advanced App</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-  <h1>💸 Om Professional Website</h1>
+  <h1>🚀 Om Advanced App</h1>
+  <button onclick="toggleDark()">🌙</button>
 </header>
 
 <nav>
-  <a href="#">Home</a>
-  <a href="#">Form</a>
-  <a href="#">Table</a>
-  <a href="#">Media</a>
-  <button onclick="toggleDark()">🌙</button>
+  <a href="#form">Form</a>
+  <a href="#list">List</a>
+  <a href="#media">Media</a>
+  <a href="#upload">Upload</a>
 </nav>
 
 <main>
 
-<section>
-  <h2>📋 Registration Form</h2>
-  <form id="myForm">
-    <input type="text" placeholder="Name" required>
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
-    <input type="date">
-    <input type="file">
-    <textarea placeholder="Message"></textarea>
-    <select>
-      <option>Select Course</option>
-      <option>HTML</option>
-      <option>CSS</option>
-      <option>JavaScript</option>
-    </select>
-    <button type="submit">Submit</button>
+<!-- FORM -->
+<section id="form">
+  <h2>Add User</h2>
+  <form id="formData">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <button type="submit">Add</button>
   </form>
 </section>
 
-<section>
-  <h2>📊 Table</h2>
+<!-- LIST -->
+<section id="list">
+  <h2>User List</h2>
   <table>
-    <tr><th>Name</th><th>Skill</th></tr>
-    <tr><td>Om</td><td>HTML</td></tr>
-    <tr><td>Rahul</td><td>CSS</td></tr>
+    <thead>
+      <tr><th>Name</th><th>Email</th><th>Delete</th></tr>
+    </thead>
+    <tbody id="data"></tbody>
   </table>
 </section>
 
-<section>
-  <h2>📌 Lists</h2>
-  <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-  <ol><li>Learn</li><li>Practice</li></ol>
+<!-- FILE UPLOAD -->
+<section id="upload">
+  <h2>📁 Upload File</h2>
+  <input type="file" id="fileInput">
+  <button onclick="uploadFile()">Upload</button>
+  <p id="fileName"></p>
 </section>
 
+<!-- DOWNLOAD -->
 <section>
-  <h2>🎥 Media</h2>
-  <video controls>
-    <source src="">
-  </video>
-  <audio controls>
-    <source src="">
-  </audio>
+  <h2>⬇️ Download File</h2>
+  <button onclick="downloadFile()">Download Sample</button>
 </section>
 
+<!-- CAMERA -->
 <section>
-  <h2>🌐 Iframe</h2>
-  <iframe src="https://example.com"></iframe>
+  <h2>📷 Camera</h2>
+  <video id="camera" autoplay></video>
+  <button onclick="startCamera()">Open Camera</button>
 </section>
 
-<article>
-  <h2>📘 Article</h2>
-  <p>Website content section</p>
-</article>
+<!-- IMAGE PREVIEW -->
+<section>
+  <h2>🖼️ Image Preview</h2>
+  <input type="file" id="imgInput" accept="image/*">
+  <img id="preview" width="200">
+</section>
 
-<aside>
-  <h3>🔥 Sidebar</h3>
-  <p>Quick links</p>
-</aside>
-
-<details>
-  <summary>More Info</summary>
-  <p>Hidden content</p>
-</details>
+<!-- SOCIAL LINKS -->
+<section id="media">
+  <h2>🌐 Social Links</h2>
+  <a href="https://www.facebook.com" target="_blank">Facebook</a><br>
+  <a href="https://www.instagram.com" target="_blank">Instagram</a><br>
+  <a href="https://www.linkedin.com" target="_blank">LinkedIn</a><br>
+  <a href="https://github.com" target="_blank">GitHub</a>
+</section>
 
 </main>
 
 <footer>
-  <p>© 2026 Om Website</p>
+  <p>© 2026 Om App</p>
 </footer>
 
-<!-- JAVASCRIPT -->
-<script>
-
-// DARK MODE
-function toggleDark() {
-  document.body.classList.toggle("dark");
-}
-
-// FORM SUBMIT
-document.getElementById("myForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  alert("Form Submitted 🚀");
-});
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
