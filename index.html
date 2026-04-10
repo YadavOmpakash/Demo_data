@@ -1,114 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Om Professional App</title>
+<title>Om_Maker</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<h1>🚀 Om Multi App</h1>
 
-<ul>
-  <li><a href="page1.html">⏰ Time</a></li>
-  <li><a href="page2.html">🧮 Calculator</a></li>
-  <li><a href="page3.html">😀 Emojis</a></li>
-  <li><a href="page4.html">📅 Date</a></li>
-  <li><a href="page5.html">🔢 Counter</a></li>
-  <li><a href="page6.html">🎨 Color Change</a></li>
-  <li><a href="page7.html">🔤 Text Change</a></li>
-  <li><a href="page8.html">📷 Camera</a></li>
-  <li><a href="page9.html">📁 File Upload</a></li>
-  <li><a href="page10.html">🌐 Links</a></li>
-</ul>
 <body>
 
 <header>
-  <h1>🚀 Om Professional App</h1>
-  <button onclick="toggleDark()">🌙</button>
+  <h1>🚀 Om Pro </h1>
+  <p>10 Functional Pages</p>
 </header>
 
 <nav>
-  <a href="#home">Home</a>
-  <a href="#form">Form</a>
-  <a href="#list">List</a>
-  <a href="#media">Media</a>
-  <a href="#tools">Tools</a>
+  <a href="index.html">Home</a>
+  <a href="page1.html">Time</a>
+  <a href="page2.html">Calc</a>
+  <a href="page3.html">Emoji</a>
+  <a href="page4.html">Date</a>
 </nav>
 
-<main>
+<div class="container">
 
-<section id="home">
-  <h2>🏠 Home</h2>
-  <p>Welcome to my professional web app</p>
-</section>
+  <div class="card">
+    <h3>⏰ Time</h3>
+    <a href="page1.html"><button>Open</button></a>
+  </div>
 
-<section id="form">
-  <h2>📋 Add User</h2>
-  <form id="formData">
-    <input type="text" id="name" placeholder="Name" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <button type="submit">Add</button>
-  </form>
-</section>
+  <div class="card">
+    <h3>🧮 Calculator</h3>
+    <a href="page2.html"><button>Open</button></a>
+  </div>
 
-<section id="list">
-  <h2>📊 User List</h2>
-  <table>
-    <thead>
-      <tr><th>Name</th><th>Email</th><th>Delete</th></tr>
-    </thead>
-    <tbody id="data"></tbody>
-  </table>
-</section>
+  <div class="card">
+    <h3>😀 Emoji</h3>
+    <a href="page3.html"><button>Open</button></a>
+  </div>
 
-<section id="tools">
-  <h2>🛠 Tools</h2>
+  <div class="card">
+    <h3>📅 Date</h3>
+    <a href="page4.html"><button>Open</button></a>
+  </div>
 
-  <h3>📁 Upload File</h3>
-  <input type="file" id="fileInput">
-  <p id="fileName"></p>
+  <div class="card">
+    <h3>🔢 Counter</h3>
+    <a href="page5.html"><button>Open</button></a>
+  </div>
 
-  <h3>⬇️ Download</h3>
-  <button onclick="downloadFile()">Download File</button>
+  <div class="card">
+    <h3>🎨 Color</h3>
+    <a href="page6.html"><button>Open</button></a>
+  </div>
 
-  <h3>📷 Camera</h3>
-  <video id="camera" autoplay></video>
-  <button onclick="startCamera()">Open Camera</button>
+  <div class="card">
+    <h3>🔤 Text</h3>
+    <a href="page7.html"><button>Open</button></a>
+  </div>
 
-  <h3>🖼 Image Preview</h3>
-  <input type="file" id="imgInput" accept="image/*">
-  <img id="preview" width="200">
+  <div class="card">
+    <h3>📷 Camera</h3>
+    <a href="page8.html"><button>Open</button></a>
+  </div>
 
-</section>
+  <div class="card">
+    <h3>📁 Upload</h3>
+    <a href="page9.html"><button>Open</button></a>
+  </div>
 
-<section id="media">
-  <h2>🌐 Social Links</h2>
-  <a href="https://facebook.com" target="_blank">Facebook</a><br>
-  <a href="https://instagram.com" target="_blank">Instagram</a><br>
-  <a href="https://linkedin.com" target="_blank">LinkedIn</a><br>
-  <a href="https://github.com" target="_blank">GitHub</a>
-</section>
+  <div class="card">
+    <h3>🌐 Links</h3>
+    <a href="page10.html"><button>Open</button></a>
+  </div>
 
-<article>
-  <h3>📘 About</h3>
-  <p>This is a professional multi-feature web app.</p>
-</article>
+</div>
 
-<aside>
-  <h3>🔥 Sidebar</h3>
-  <p>Extra info section</p>
-</aside>
-
-<details>
-  <summary>More Info</summary>
-  <p>Expandable content</p>
-</details>
-
-</main>
-
-<footer>
-  <p>© 2026 Om App</p>
-</footer>
-
-<script src="script.js"></script>
 </body>
 </html>
