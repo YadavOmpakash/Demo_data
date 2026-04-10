@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>⏰ Current Time</h2>
+<h1 id="time"></h1>
+<a href="index.html">⬅ Back</a>
+
+<script>
+setInterval(()=>{
+  document.getElementById("time").innerText = new Date().toLocaleTimeString();
+},1000);
+</script>
+
+</body>
+</html>
