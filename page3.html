@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>🧮 Calculator</h2>
+
+<input id="a">
+<input id="b">
+<button onclick="calc()">Add</button>
+
+<p id="res"></p>
+<a href="index.html">⬅ Back</a>
+
+<script>
+function calc(){
+  let a = +document.getElementById("a").value;
+  let b = +document.getElementById("b").value;
+  document.getElementById("res").innerText = a+b;
+}
+</script>
+
+</body>
+</html>
