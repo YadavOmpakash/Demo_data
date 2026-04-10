@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>📷 Camera</h2>
+<video id="cam" autoplay></video>
+<button onclick="start()">Start</button>
+
+<a href="index.html">⬅ Back</a>
+
+<script>
+function start(){
+  navigator.mediaDevices.getUserMedia({video:true})
+  .then(s=>document.getElementById("cam").srcObject=s);
+}
+</script>
+
+</body>
+</html>
