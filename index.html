@@ -1,50 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Om Prakash Yadav | Web Tools</title>
-
-<link rel="stylesheet" href="style.css">
+<title>Om Pro App</title>
 
 <style>
-/* PROFILE */
-.profile {
-  text-align: center;
-  margin: 20px;
-}
-.profile img {
-  width: 120px;
-  border-radius: 50%;
-}
+body { font-family: Arial; margin:0; background:#f0f2f5; }
+header { background:#1877f2; color:white; text-align:center; padding:10px; }
 
-/* COMMENT BOX */
-.comment-box {
-  padding: 20px;
-  text-align: center;
-}
-.comment-box textarea {
-  width: 80%;
-  height: 80px;
-  margin: 10px;
-}
+.profile { text-align:center; margin:20px; }
+.profile img { width:120px; border-radius:50%; }
 
-/* FOOTER */
-footer {
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 20px;
-}
+.container { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+.card { background:white; padding:20px; border-radius:10px; }
 
-/* LOGIN */
-#loginBox {
-  text-align: center;
-  padding: 20px;
-}
+.post { background:white; margin:10px auto; padding:10px; border-radius:10px; width:90%; }
+
+textarea { width:80%; height:60px; }
+
+.dark { background:#111; color:white; }
+.dark .post { background:#222; }
+
+footer { background:#111; color:white; text-align:center; padding:10px; }
 </style>
 
 </head>
@@ -52,132 +31,153 @@ footer {
 <body>
 
 <header>
-  <h1>🚀 Om Pro</h1>
-  <p>All Tools + Features</p>
+<h1>🚀 Om Pro</h1>
 </header>
 
 <!-- LOGIN -->
-<div id="loginBox">
-  <h2>Login</h2>
-  <input type="text" id="user" placeholder="Username"><br><br>
-  <input type="password" id="pass" placeholder="Password"><br><br>
-  <button onclick="login()">Login</button>
-  <p id="msg"></p>
+<div id="loginBox" style="text-align:center;">
+<h2>Login</h2>
+<input id="user" placeholder="Username"><br><br>
+<input id="pass" type="password" placeholder="Password"><br><br>
+<button onclick="login()">Login</button>
+<p id="msg"></p>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <div id="main" style="display:none;">
 
 <!-- PROFILE -->
 <div class="profile">
-  <img id="profilePic" src="" alt="Profile">
-  <h2>Om Prakash Yadav</h2>
-</div>
-
-<!-- IMAGE UPLOAD -->
-<div style="text-align:center;">
-  <input type="file" onchange="loadImage(event)">
+<img id="profilePic">
+<h2>Om Prakash Yadav</h2>
+<input type="file" onchange="loadImage(event)">
 </div>
 
 <!-- CAMERA -->
-<div style="text-align:center; margin:20px;">
-  <video id="video" width="300" autoplay></video><br>
-  <button onclick="startCamera()">Start Camera</button>
+<div style="text-align:center;">
+<video id="video" width="250" autoplay></video><br>
+<button onclick="startCamera()">Start Camera</button>
 </div>
 
 <!-- TOOLS -->
 <div class="container">
-
-  <div class="card">
-    <h3>⏰ Time</h3>
-    <button onclick="openPage('page1.html')">Open</button>
-  </div>
-
-  <div class="card">
-    <h3>🧮 Calculator</h3>
-    <button onclick="openPage('page2.html')">Open</button>
-  </div>
-
+<div class="card">
+<h3>Calculator</h3>
+<button onclick="openPage('https://www.google.com/search?q=calculator')">Open</button>
+</div>
 </div>
 
-<!-- IFRAME -->
-<iframe id="frame" width="100%" height="300"></iframe>
+<iframe id="frame" width="100%" height="200"></iframe>
 
 <!-- COMMENT -->
-<div class="comment-box">
-  <h3>💬 Add Comment</h3>
-  <textarea id="comment"></textarea><br>
-  <button onclick="addComment()">Submit</button>
-  <p id="showComment"></p>
+<div style="text-align:center;">
+<textarea id="comment"></textarea><br>
+<button onclick="addComment()">Comment</button>
+<p id="showComment"></p>
 </div>
 
-</div>
+<!-- SOCIAL -->
+<div style="text-align:center;">
+<h3>Create Post</h3>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Om Prakash Yadav</p>
-  <button onclick="changeColor()">Change Background</button>
-</footer>
+<textarea id="postText"></textarea><br>
+<input type="file" id="imageUpload"><br><br>
 
-<!-- JS -->
-<script>
-
-// LOGIN FUNCTION
-function login(){
-  let u = document.getElementById("user").value;
-  let p = document.getElementById("pass").value;
-
-  if(u=="om" && p=="123"){
-    document.getElementById("main").style.display="block";
-    document.getElementById("loginBox").style.display="none";
-  } else {
-    document.getElementById("msg").innerHTML="Wrong Login";
-  }
-}
-
-// IMAGE UPLOAD
-function loadImage(event){
-  let img = document.getElementById("profilePic");
-  img.src = URL.createObjectURL(event.target.files[0]);
-}
-
-// CAMERA
-function startCamera(){
-  navigator.mediaDevices.getUserMedia({video:true})
-  .then(stream=>{
-    document.getElementById("video").srcObject = stream;
-  });
-}
-
-// COMMENT
-function addComment(){
-  let text = document.getElementById("comment").value;
-  document.getElementById("showComment").innerHTML = text;
-}
-
-// IFRAME
-function openPage(page){
-  document.getElementById("frame").src = page;
-}
-
-// FOOTER COLOR CHANGE
-function changeColor(){
-  document.body.style.background = "#" + Math.floor(Math.random()*16777215).toString(16);
-}
-
-<textarea id="postText"></textarea>
-<input type="file" id="imageUpload">
-
-<input type="text" id="search" onkeyup="searchPosts()" placeholder="Search...">
-
-<div id="posts"></div>
+<input id="search" placeholder="Search..." onkeyup="searchPosts()"><br><br>
 
 <button onclick="addPost()">Post</button>
 <button onclick="toggleDarkMode()">🌙</button>
 
+<div id="posts"></div>
+</div>
 
+</div>
 
-  
+<footer>
+<p>© Om Prakash Yadav</p>
+<button onclick="changeColor()">Change Color</button>
+</footer>
+
+<script>
+
+// LOGIN
+function login(){
+let u=user.value, p=pass.value;
+if(u=="om" && p=="123"){
+main.style.display="block";
+loginBox.style.display="none";
+}else msg.innerText="Wrong Login";
+}
+
+// PROFILE IMAGE
+function loadImage(e){
+profilePic.src=URL.createObjectURL(e.target.files[0]);
+}
+
+// CAMERA
+function startCamera(){
+navigator.mediaDevices.getUserMedia({video:true})
+.then(s=>video.srcObject=s);
+}
+
+// COMMENT
+function addComment(){
+showComment.innerText=comment.value;
+}
+
+// IFRAME
+function openPage(p){
+frame.src=p;
+}
+
+// COLOR
+function changeColor(){
+document.body.style.background="#"+Math.floor(Math.random()*16777215).toString(16);
+}
+
+// POSTS
+function addPost(){
+let text=postText.value;
+let file=imageUpload.files[0];
+
+if(!text && !file) return;
+
+let reader=new FileReader();
+reader.onload=function(e){
+let post=document.createElement("div");
+post.className="post";
+post.innerHTML=`
+<p>${text}</p>
+${file?`<img src="${e.target.result}" width="100%">`:``}
+<button onclick="likePost(this)">🤍 Like</button>
+`;
+posts.prepend(post);
+};
+if(file) reader.readAsDataURL(file);
+else reader.onload({target:{result:""}});
+
+postText.value="";
+imageUpload.value="";
+}
+
+// LIKE
+function likePost(btn){
+btn.innerText = btn.innerText==="🤍 Like" ? "❤️ Liked" : "🤍 Like";
+}
+
+// SEARCH
+function searchPosts(){
+let val=search.value.toLowerCase();
+document.querySelectorAll(".post").forEach(p=>{
+p.style.display=p.innerText.toLowerCase().includes(val)?"block":"none";
+});
+}
+
+// DARK MODE
+function toggleDarkMode(){
+document.body.classList.toggle("dark");
+}
+
 </script>
 
 </body>
