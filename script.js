@@ -74,4 +74,55 @@ function toggleDark() {
   document.body.classList.toggle("dark");
 }
 
+
+<script>
+
+// AUTO LOGIN CHECK (page reload pe bhi login rahe)
+window.onload = function() {
+  if(localStorage.getItem("login") === "true"){
+    showMain();
+  }
+}
+
+// LOGIN FUNCTION
+function login(){
+  let u = document.getElementById("user").value.trim();
+  let p = document.getElementById("pass").value.trim();
+
+  // validation
+  if(u === "" || p === ""){
+    document.getElementById("msg").innerHTML = "⚠️ Enter username & password";
+    return;
+  }
+
+  // demo credentials
+  if(u === "om" && p === "123"){
+    localStorage.setItem("login", "true");
+    localStorage.setItem("username", u);
+    showMain();
+  } else {
+    document.getElementById("msg").innerHTML = "❌ Invalid Login";
+  }
+}
+
+// SHOW MAIN CONTENT
+function showMain(){
+  document.getElementById("main").style.display = "block";
+  document.getElementById("loginBox").style.display = "none";
+
+  let name = localStorage.getItem("username");
+  if(name){
+    document.querySelector(".profile h2").innerHTML = "Welcome " + name;
+  }
+}
+
+// LOGOUT FUNCTION
+function logout(){
+  localStorage.clear();
+  location.reload();
+}
+
+</script>
+    
+
 render();
