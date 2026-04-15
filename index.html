@@ -13,6 +13,42 @@
 
 <meta name="google-site-verification" content="SIyi6jhs7rCPfWUsPHfxfEFWW_gHCr5W9z0pE-DpUOo" />
 
+<style>
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #222;
+  top: 40px;
+  min-width: 150px;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* PROFILE */
+.profile {
+  text-align: center;
+  margin: 20px;
+}
+
+.profile img {
+  width: 120px;
+  border-radius: 50%;
+  border: 3px solid #00a884;
+}
+</style>
+
 </head>
 
 <body>
@@ -22,73 +58,71 @@
   <p>10+ Functional Tools & Govt Links</p>
 </header>
 
+<!-- ADVANCED NAVBAR -->
 <nav>
   <a href="index.html">Home</a>
   <a href="page1.html">Time</a>
   <a href="page2.html">Calc</a>
-  <a href="page3.html">Emoji</a>
-  <a href="page4.html">Date</a>
+
+  <div class="dropdown">
+    <a href="#">More ▼</a>
+    <div class="dropdown-content">
+      <a href="page3.html">Emoji</a>
+      <a href="page4.html">Date</a>
+      <a href="page5.html">Counter</a>
+      <a href="page11.html">Govt Links</a>
+    </div>
+  </div>
 </nav>
+
+<!-- PROFILE SECTION -->
+<div class="profile">
+  <!-- Apni image yaha daalo -->
+  <img src="profile.jpg" alt="Om Prakash Yadav">
+  <h2>Om Prakash Yadav</h2>
+  <p>Web Developer</p>
+</div>
 
 <div class="container">
 
   <div class="card">
     <h3>⏰ Time</h3>
-    <a href="page1.html"><button>Open</button></a>
+    <button onclick="openPage('page1.html')">Open</button>
   </div>
 
   <div class="card">
     <h3>🧮 Calculator</h3>
-    <a href="page2.html"><button>Open</button></a>
+    <button onclick="openPage('page2.html')">Open</button>
   </div>
 
   <div class="card">
     <h3>😀 Emoji</h3>
-    <a href="page3.html"><button>Open</button></a>
+    <button onclick="openPage('page3.html')">Open</button>
   </div>
 
   <div class="card">
     <h3>📅 Date</h3>
-    <a href="page4.html"><button>Open</button></a>
+    <button onclick="openPage('page4.html')">Open</button>
   </div>
 
-  <div class="card">
-    <h3>🔢 Counter</h3>
-    <a href="page5.html"><button>Open</button></a>
-  </div>
-
-  <div class="card">
-    <h3>🎨 Color</h3>
-    <a href="page6.html"><button>Open</button></a>
-  </div>
-
-  <div class="card">
-    <h3>🔤 Text</h3>
-    <a href="page7.html"><button>Open</button></a>
-  </div>
-
-  <div class="card">
-    <h3>📷 Camera</h3>
-    <a href="page8.html"><button>Open</button></a>
-  </div>
-
-  <div class="card">
-    <h3>📁 Upload</h3>
-    <a href="page9.html"><button>Open</button></a>
-  </div>
-
-  <div class="card">
-    <h3>🌐 Links</h3>
-    <a href="page10.html"><button>Open</button></a>
-  </div>
-
-  <!-- NEW GOVT LINKS CARD -->
   <div class="card">
     <h3>🏛️ Govt Links</h3>
-    <a href="page11.html"><button>Open</button></a>
+    <button onclick="openPage('page11.html')">Open</button>
   </div>
 
 </div>
+
+<!-- IFRAME (PAGE LOAD HERE) -->
+<div style="padding:20px;">
+  <iframe id="frame" width="100%" height="400px"></iframe>
+</div>
+
+<!-- JAVASCRIPT FUNCTION -->
+<script>
+function openPage(page) {
+  document.getElementById("frame").src = page;
+}
+</script>
 
 </body>
 </html>
