@@ -125,3 +125,27 @@ button:hover {
     font-size: 22px;
   }
 }
+
+
+
+.dark {
+  background: #18191a;
+  color: white;
+}
+
+.post img {
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: black;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+
