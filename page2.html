@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,6 @@
 
     body { display:flex; background:#f4f4f4; }
 
-    /* SIDEBAR */
     .sidebar {
       width:250px;
       height:100vh;
@@ -18,13 +16,10 @@
       padding:20px;
     }
 
-    .sidebar h2 { margin-bottom:20px; }
-
     .sidebar a {
       display:block;
       padding:10px;
       color:white;
-      text-decoration:none;
       margin:5px 0;
       cursor:pointer;
     }
@@ -34,12 +29,8 @@
       border-radius:5px;
     }
 
-    /* MAIN */
-    .main {
-      flex:1;
-    }
+    .main { flex:1; }
 
-    /* HEADER */
     .header {
       background:white;
       padding:15px;
@@ -48,10 +39,7 @@
       box-shadow:0 2px 5px gray;
     }
 
-    /* CONTENT */
-    .content {
-      padding:20px;
-    }
+    .content { padding:20px; }
 
     .card {
       background:white;
@@ -79,8 +67,10 @@
       cursor:pointer;
     }
 
-    @media(max-width:768px){
-      .sidebar { display:none; }
+    /* TIME BOX */
+    .time-box {
+      text-align:center;
+      font-size:20px;
     }
 
   </style>
@@ -105,15 +95,13 @@
     <button onclick="toggleDark()">🌙</button>
   </div>
 
-  <div class="content" id="content">
-    <!-- Dynamic content yaha load hoga -->
-  </div>
+  <div class="content" id="content"></div>
 
 </div>
 
 <script>
 
-// LOAD PAGE FUNCTION (SPA CORE)
+// SPA LOAD
 function loadPage(page) {
   let content = document.getElementById("content");
   let title = document.getElementById("title");
@@ -121,9 +109,16 @@ function loadPage(page) {
   if (page === "dashboard") {
     title.innerText = "Dashboard";
     content.innerHTML = `
+      <div class="card time-box">
+        ⏰ Current Time
+        <h1 id="time"></h1>
+      </div>
+
       <div class="card"><h3>Users</h3><p>100</p></div>
       <div class="card"><h3>Revenue</h3><p>$5000</p></div>
     `;
+
+    startTime(); // important
   }
 
   if (page === "users") {
@@ -143,7 +138,7 @@ function loadPage(page) {
   if (page === "reports") {
     title.innerText = "Reports";
     content.innerHTML = `
-      <div class="card"><h3>Reports Section</h3><p>Analytics data here</p></div>
+      <div class="card"><h3>Reports</h3><p>Analytics data</p></div>
     `;
   }
 
@@ -155,6 +150,16 @@ function loadPage(page) {
   }
 }
 
+// TIME FUNCTION
+function startTime() {
+  setInterval(()=>{
+    let el = document.getElementById("time");
+    if(el){
+      el.innerText = new Date().toLocaleTimeString();
+    }
+  },1000);
+}
+
 // DELETE ROW
 function deleteRow(btn) {
   btn.parentElement.parentElement.remove();
@@ -162,7 +167,8 @@ function deleteRow(btn) {
 
 // DARK MODE
 function toggleDark() {
-  document.body.classList.toggle("dark");
+  document.body.style.background =
+    document.body.style.background === "black" ? "#f4f4f4" : "black";
 }
 
 // DEFAULT LOAD
@@ -170,33 +176,5 @@ loadPage("dashboard");
 
 </script>
 
-
-
-
-<h2>⏰ Current Time</h2>
-<h1 id="time"></h1>
-<a href="index.html">⬅ Back</a>
-
-<script>
-setInterval(()=>{
-  document.getElementById("time").innerText = new Date().toLocaleTimeString();
-},1000);
-</script>
-
-
-  
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
