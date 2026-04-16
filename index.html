@@ -6,24 +6,45 @@
 
 <title>Om Pro App</title>
 
+<!-- Google Verification -->
+<meta name="google-site-verification" content="SIyi6jhs7rCPfWUsPHfxfEFWW_gHCr5W9z0pE-DpUOo" />
+
+<link rel="stylesheet" href="style.css">
+
 <style>
 body { font-family: Arial; margin:0; background:#f0f2f5; }
+
 header { background:#1877f2; color:white; text-align:center; padding:10px; }
+
+nav {
+  background:#333;
+  text-align:center;
+  padding:10px;
+}
+nav a {
+  color:white;
+  margin:10px;
+  text-decoration:none;
+}
+
+.container { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+}
 
 .profile { text-align:center; margin:20px; }
 .profile img { width:120px; border-radius:50%; }
 
-.container { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-.card { background:white; padding:20px; border-radius:10px; }
-
 .post { background:white; margin:10px auto; padding:10px; border-radius:10px; width:90%; }
-
-textarea { width:80%; height:60px; }
 
 .dark { background:#111; color:white; }
 .dark .post { background:#222; }
 
 footer { background:#111; color:white; text-align:center; padding:10px; }
+
 </style>
 
 </head>
@@ -31,8 +52,15 @@ footer { background:#111; color:white; text-align:center; padding:10px; }
 <body>
 
 <header>
-<h1>🚀 Om Pro</h1>
+  <h1>🚀 Om Pro</h1>
 </header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="page1.html">Time</a>
+  <a href="page2.html">Calc</a>
+  <a href="page3.html">Emoji</a>
+</nav>
 
 <!-- LOGIN -->
 <div id="loginBox" style="text-align:center;">
@@ -102,62 +130,73 @@ footer { background:#111; color:white; text-align:center; padding:10px; }
 
 // LOGIN
 function login(){
-let u=user.value, p=pass.value;
-if(u=="om" && p=="123"){
-main.style.display="block";
-loginBox.style.display="none";
-}else msg.innerText="Wrong Login";
+let u = document.getElementById("user").value;
+let p = document.getElementById("pass").value;
+
+if(u==="om" && p==="123"){
+document.getElementById("main").style.display="block";
+document.getElementById("loginBox").style.display="none";
+}else{
+document.getElementById("msg").innerText="Wrong Login";
+}
 }
 
 // PROFILE IMAGE
 function loadImage(e){
-profilePic.src=URL.createObjectURL(e.target.files[0]);
+document.getElementById("profilePic").src =
+URL.createObjectURL(e.target.files[0]);
 }
 
 // CAMERA
 function startCamera(){
 navigator.mediaDevices.getUserMedia({video:true})
-.then(s=>video.srcObject=s);
+.then(s=>document.getElementById("video").srcObject=s);
 }
 
 // COMMENT
 function addComment(){
-showComment.innerText=comment.value;
+document.getElementById("showComment").innerText =
+document.getElementById("comment").value;
 }
 
 // IFRAME
 function openPage(p){
-frame.src=p;
+document.getElementById("frame").src=p;
 }
 
 // COLOR
 function changeColor(){
-document.body.style.background="#"+Math.floor(Math.random()*16777215).toString(16);
+document.body.style.background =
+"#"+Math.floor(Math.random()*16777215).toString(16);
 }
 
 // POSTS
 function addPost(){
-let text=postText.value;
-let file=imageUpload.files[0];
+let text=document.getElementById("postText").value;
+let file=document.getElementById("imageUpload").files[0];
 
 if(!text && !file) return;
 
 let reader=new FileReader();
+
 reader.onload=function(e){
 let post=document.createElement("div");
 post.className="post";
+
 post.innerHTML=`
 <p>${text}</p>
 ${file?`<img src="${e.target.result}" width="100%">`:``}
 <button onclick="likePost(this)">🤍 Like</button>
 `;
-posts.prepend(post);
+
+document.getElementById("posts").prepend(post);
 };
+
 if(file) reader.readAsDataURL(file);
 else reader.onload({target:{result:""}});
 
-postText.value="";
-imageUpload.value="";
+document.getElementById("postText").value="";
+document.getElementById("imageUpload").value="";
 }
 
 // LIKE
@@ -167,9 +206,10 @@ btn.innerText = btn.innerText==="🤍 Like" ? "❤️ Liked" : "🤍 Like";
 
 // SEARCH
 function searchPosts(){
-let val=search.value.toLowerCase();
+let val=document.getElementById("search").value.toLowerCase();
+
 document.querySelectorAll(".post").forEach(p=>{
-p.style.display=p.innerText.toLowerCase().includes(val)?"block":"none";
+p.style.display = p.innerText.toLowerCase().includes(val) ? "block":"none";
 });
 }
 
