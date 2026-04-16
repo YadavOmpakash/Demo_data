@@ -1,23 +1,26 @@
-<script>
-
-// AUTO LOGIN (refresh ke baad bhi login rahe)
-window.addEventListener("load", function(){
-  if(localStorage.getItem("login") === "true"){
+// ========================
+// AUTO LOGIN + LOAD POSTS
+// ========================
+window.addEventListener("load", function () {
+  if (localStorage.getItem("login") === "true") {
     showMain();
   }
+  loadPosts(); // dono ek sath chalenge
 });
 
-// LOGIN FUNCTION
-function login(){
+// ========================
+// LOGIN
+// ========================
+function login() {
   let u = document.getElementById("user").value.trim();
   let p = document.getElementById("pass").value.trim();
 
-  if(u === "" || p === ""){
+  if (u === "" || p === "") {
     document.getElementById("msg").innerHTML = "⚠️ Enter username & password";
     return;
   }
 
-  if(u === "om" && p === "123"){
+  if (u === "om" && p === "123") {
     localStorage.setItem("login", "true");
     localStorage.setItem("username", u);
     showMain();
@@ -26,66 +29,65 @@ function login(){
   }
 }
 
-// SHOW MAIN CONTENT
-function showMain(){
+// ========================
+// SHOW MAIN
+// ========================
+function showMain() {
   document.getElementById("main").style.display = "block";
   document.getElementById("loginBox").style.display = "none";
 
   let name = localStorage.getItem("username");
-  if(name){
+  if (name) {
     document.querySelector(".profile h2").innerHTML = "Welcome " + name;
   }
 }
 
-// LOGOUT (optional)
-function logout(){
+// ========================
+// LOGOUT
+// ========================
+function logout() {
   localStorage.clear();
   location.reload();
 }
 
-// IMAGE UPLOAD
-function loadImage(event){
-  let img = document.getElementById("profilePic");
-  img.src = URL.createObjectURL(event.target.files[0]);
+// ========================
+// PROFILE IMAGE
+// ========================
+function loadImage(event) {
+  document.getElementById("profilePic").src =
+    URL.createObjectURL(event.target.files[0]);
 }
 
+// ========================
 // CAMERA
-function startCamera(){
-  navigator.mediaDevices.getUserMedia({video:true})
-  .then(stream=>{
-    document.getElementById("video").srcObject = stream;
-  });
+// ========================
+function startCamera() {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+      document.getElementById("video").srcObject = stream;
+    });
 }
 
-// COMMENT
-function addComment(){
-  let text = document.getElementById("comment").value;
-  document.getElementById("showComment").innerHTML = text;
-}
-
+// ========================
 // IFRAME
-function openPage(page){
+// ========================
+function openPage(page) {
   document.getElementById("frame").src = page;
 }
 
-// FOOTER COLOR
-function changeColor(){
-  document.body.style.background = "#" + Math.floor(Math.random()*16777215).toString(16);
+// ========================
+// COLOR
+// ========================
+function changeColor() {
+  document.body.style.background =
+    "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-
-
-
-
-
 // ========================
-// GLOBAL VARIABLES
+// POSTS SYSTEM
 // ========================
 let postCounter = 0;
 
-// ========================
-// ADD POST (TEXT + IMAGE)
-// ========================
 function addPost() {
   let text = document.getElementById("postText").value;
   let file = document.getElementById("imageUpload").files[0];
@@ -98,11 +100,8 @@ function addPost() {
     createPost(text, e.target.result);
   };
 
-  if (file) {
-    reader.readAsDataURL(file);
-  } else {
-    createPost(text, null);
-  }
+  if (file) reader.readAsDataURL(file);
+  else createPost(text, null);
 }
 
 // ========================
@@ -122,7 +121,7 @@ function createPost(text, image) {
 
     <div>
       <input id="comment-input-${postCounter}" placeholder="Write comment...">
-      <button onclick="addComment(${postCounter})">Comment</button>
+      <button onclick="addPostComment(${postCounter})">Comment</button>
     </div>
 
     <div id="comments-${postCounter}"></div>
@@ -138,7 +137,7 @@ function createPost(text, image) {
 }
 
 // ========================
-// LIKE / UNLIKE
+// LIKE
 // ========================
 function likePost(btn) {
   if (btn.classList.contains("liked")) {
@@ -151,9 +150,9 @@ function likePost(btn) {
 }
 
 // ========================
-// ADD COMMENT
+// COMMENT (FIXED NAME)
 // ========================
-function addComment(id) {
+function addPostComment(id) {
   let input = document.getElementById("comment-input-" + id);
   let text = input.value;
 
@@ -176,20 +175,18 @@ function toggleDarkMode() {
 }
 
 // ========================
-// SEARCH POSTS
+// SEARCH
 // ========================
 function searchPosts() {
-  let input = document.getElementById("search").value.toLowerCase();
-  let posts = document.querySelectorAll(".post");
+  let val = document.getElementById("search").value.toLowerCase();
 
-  posts.forEach(post => {
-    let text = post.innerText.toLowerCase();
-    post.style.display = text.includes(input) ? "block" : "none";
+  document.querySelectorAll(".post").forEach(p => {
+    p.style.display = p.innerText.toLowerCase().includes(val) ? "block" : "none";
   });
 }
 
 // ========================
-// NOTIFICATION SYSTEM
+// NOTIFICATION
 // ========================
 function showNotification(msg) {
   let notif = document.createElement("div");
@@ -204,22 +201,15 @@ function showNotification(msg) {
 }
 
 // ========================
-// LOCAL STORAGE SAVE
+// SAVE / LOAD
 // ========================
 function savePosts() {
   localStorage.setItem("posts", document.getElementById("posts").innerHTML);
 }
 
-// ========================
-// LOAD POSTS ON START
-// ========================
 function loadPosts() {
   let data = localStorage.getItem("posts");
   if (data) {
     document.getElementById("posts").innerHTML = data;
   }
 }
-window.onload = loadPosts;
-                                
-
-</script>
